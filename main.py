@@ -38,7 +38,7 @@ def job():
 
 @app.on_event("startup")
 def start_scheduler():
-    interval = int(os.getenv('POLL_INTERVAL', 60))
+    interval = int(os.getenv('POLL_INTERVAL', 10))
     scheduler.add_job(job, 'interval', seconds=interval)
     scheduler.start()
 
