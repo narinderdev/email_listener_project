@@ -4,7 +4,7 @@ services:
     image: mysql:8
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Kaifee@1
+      MYSQL_ROOT_PASSWORD: Emaillistener@1
       MYSQL_ALLOW_EMPTY_ROOT_PASSWORD: "no"
       MYSQL_ROOT_HOST: "%"
     ports:
