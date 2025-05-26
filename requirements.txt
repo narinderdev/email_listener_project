@@ -2,6 +2,7 @@ fastapi==0.100.0
 uvicorn[standard]
 sqlalchemy
 cryptography
+beautifulsoup4
 pymysql
 httpx
 apscheduler

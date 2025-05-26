@@ -2,7 +2,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()  # Loads variables from .env
-
+DB_URL = os.getenv("DB_URL")
+print("DB_URL being used:", DB_URL)
+print("Loaded DB_URL =", DB_URL)
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
 KEYWORD = os.getenv("KEYWORD")

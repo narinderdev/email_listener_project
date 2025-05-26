@@ -1,21 +1,23 @@
-from dotenv import load_dotenv
+import pymysql
 import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+from app.models import Base
+from app.database import engine
 
 load_dotenv()
+db_name = os.getenv("DB_URL").split("/")[-1]  # get db name from URL
 
-DATABASE_URL = os.getenv('DB_URL')
-if not DATABASE_URL:
-    raise ValueError("No DB_URL environment variable set")
+# Connect to mysql server (not the database, just the server)
+conn = pymysql.connect(
+    host='localhost',
+    port=3308,
+    user='root',
+    password='Kaifee@1'
+)
+with conn.cursor() as cursor:
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+conn.close()
 
-engine = create_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Import Base from app.models where ProcessedEmail is declared
-from app.models import Base
-
-# Create tables
+# Now, create tables
 Base.metadata.create_all(bind=engine)
-
-print("Tables created successfully!")
+print("Database and tables created successfully!")
