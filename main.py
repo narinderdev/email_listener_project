@@ -21,7 +21,9 @@ def job():
     db = SessionLocal()
     for mail in emails:
         if not db.query(ProcessedEmail).filter_by(email_id=mail['id']).first():
-            parsed = parse_email_content(mail['body'])
+            parsed = parse_email_content(mail)
+
+            print(f"Parsed data: {parsed}")
             # Post data to endpoint
             import asyncio
             asyncio.run(post_data(parsed))

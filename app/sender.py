@@ -1,19 +1,11 @@
-# import httpx
-# import os
-
-# async def post_data(data):
-#     url = os.getenv('ENDPOINT_URL')
-#     print(f"Posting data to URL: {url}") 
-#     async with httpx.AsyncClient() as client:
-#         resp = await client.post(url, json=data)
-#         resp.raise_for_status()
-#         return resp.json()
 import httpx
 import os
 
 async def post_data(data):
     url = os.getenv('ENDPOINT_URL')
     async with httpx.AsyncClient() as client:
+        print(f"Posting data to {url}")
+        print(f"Data being posted: {data}")
         resp = await client.post(url, json=data)
         resp.raise_for_status()
         try:
