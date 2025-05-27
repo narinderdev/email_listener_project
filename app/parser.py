@@ -19,7 +19,8 @@ def parse_email_content(mail):
     # 1. Extract Customer Rep (case-insensitive)
     rep_match = re.search(r"Customer\s*Rep:\s*(.*)", body, re.IGNORECASE)
     customer_rep = rep_match.group(1).strip() if rep_match else None
-
+    if customer_rep:
+            customer_rep = re.sub(r'\*+', '', customer_rep).strip()
     # 2. MOVING FROM block (case-insensitive)
     moving_from_section = ""
     try:
